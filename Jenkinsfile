@@ -30,22 +30,19 @@ pipeline {
     }
 }
 
-stage('Login to Docker Hub') {
+stage('Login to Dockerhub') {
     steps {
-        echo 'Logging in to Docker Hub...'
+        echo 'This stage will Logging in to Docker Hub...'
         withCredentials([usernamePassword(credentialsId: 'Dockerlogin', passwordVariable: 'docker-pass', usernameVariable: 'docker-login')]) {
-            // Use --password-stdin for better security
-            sh 'echo $docker-pass | docker login -u $docker-login --password-stdin'
+        sh 'docker login -u ${dockerlogin} -p ${dockerpass}'
         }
     }
 }
-
 stage('Docker Push Image') {
     steps {
-        echo 'Pushing the new image to Docker Hub...'
+        echo 'This stage will Push the new image to Docker Hub...'
         sh 'docker push lalucky/healthcare:1.0'
     }
-}
-
+                            }
 }
 }
