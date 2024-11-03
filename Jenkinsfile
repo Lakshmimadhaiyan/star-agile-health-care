@@ -24,24 +24,28 @@ pipeline {
                           }
             }
     stage('Create Docker Image') {
-      steps {
-        echo 'This stage will Create a Docker image'
+    steps {
+        echo 'This stage will create a Docker image'
         sh 'docker build -t lalucky/healthcare:1.0 .'
-                          }
-            }
-    stage('Login to Dockerhub') {
-      steps {
-        echo 'This stage will Create a Docker image'
+    }
+}
+
+stage('Login to Docker Hub') {
+    steps {
+        echo 'Logging in to Docker Hub...'
         withCredentials([usernamePassword(credentialsId: 'Dockerlogin', passwordVariable: 'docker-pass', usernameVariable: 'docker-login')]) {
-        sh 'docker login -u ${dockeruser} -p ${dockerpass}'
-                                 }
-      }
-             }
-       stage('Docker Push-Image') {
-      steps {
-        echo 'This stage will push my new image to the dockerhub'
+            // Use --password-stdin for better security
+            sh 'echo $docker-pass | docker login -u $docker-login --password-stdin'
+        }
+    }
+}
+
+stage('Docker Push Image') {
+    steps {
+        echo 'Pushing the new image to Docker Hub...'
         sh 'docker push lalucky/healthcare:1.0'
-            }
-      }
+    }
+}
+
 }
 }
