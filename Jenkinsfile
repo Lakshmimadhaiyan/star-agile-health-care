@@ -33,7 +33,7 @@ pipeline {
       steps {
         echo 'This stage will Create a Docker image'
         withCredentials([usernamePassword(credentialsId: 'Dockerlogin', passwordVariable: 'docker-pass', usernameVariable: 'docker-login')]) {
-        sh 'docker login -u ${dockeruser} -p ${dockerpass}' .'
+        sh 'docker login -u ${dockeruser} -p ${dockerpass}'
                                  }
       }
              }
