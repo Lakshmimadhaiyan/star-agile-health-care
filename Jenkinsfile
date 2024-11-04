@@ -34,7 +34,7 @@ stage('Login to Dockerhub') {
     steps {
         echo 'This stage will Logging in to Docker Hub...'
         withCredentials([usernamePassword(credentialsId: 'Dockerlogin', passwordVariable: 'docker-pass', usernameVariable: 'docker-login')]) {
-        sh 'docker login -u $docker-login -p $docker-pass'
+        sh 'Dockerlogin -u $docker-login -p $docker-pass'
         }
     }
 }
