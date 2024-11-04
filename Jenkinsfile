@@ -26,22 +26,22 @@ pipeline {
     stage('Create Docker Image') {
     steps {
         echo 'This stage will create a Docker image'
-        sh 'docker build -t lalucky/healthcare:1.0 .'
+        sh 'docker build -t laksm/healthcare:1.0 .'
     }
 }
 
 stage('Login to Dockerhub') {
     steps {
         echo 'This stage will Logging in to Docker Hub...'
-        withCredentials([usernamePassword(credentialsId: 'Dockerlogin', passwordVariable: 'docker-pass', usernameVariable: 'docker-login')]) {
-        sh 'Dockerlogin -u $docker-login -p $docker-pass'
+        withwithCredentials([usernamePassword(credentialsId: 'dockerlogin', passwordVariable: 'dockerpass', usernameVariable: 'dockerlogin')]) {
+        sh 'docker login -u $dockerlogin -p $dockerpass'
         }
     }
 }
 stage('Docker Push Image') {
     steps {
         echo 'This stage will Push the new image to Docker Hub...'
-        sh 'docker push lalucky/healthcare:1.0'
+        sh 'docker push laksm/healthcare:1.0'
     }
                             }
 }
