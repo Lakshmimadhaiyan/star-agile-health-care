@@ -3,10 +3,11 @@ pipeline {
      tools {
        maven 'M2_HOME'
            }
-       environment {
-  AWS-ACCESS_KEY_ID - crendentials('aws-access-key-id')
-  AWS_SECRET_ACCESS_KEY - credentials('aws-secret-access-key')
-      }
+      environment {
+        AWS_ACCESS_KEY_ID = credentials('aws-access-key-id')
+        AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')
+}
+
   stages {
     stage('Git Checkout') {
       steps {
@@ -106,7 +107,7 @@ stage('Docker Push Image') {
     }
     stage('get kubeconfig for production') {
       steps {
-        sh 'aws eks update-kubeconfig --region us-east-1 --name prod-cluster'
+        sh 'aws eks update-kubeconfig --region ap-south-1a --name prod-cluster'
         sh 'kubectl get nodes'
       }
     }
