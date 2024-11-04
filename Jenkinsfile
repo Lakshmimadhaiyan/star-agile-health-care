@@ -68,7 +68,7 @@ stage('AWS-Login') {
     }
     stage('get kubeconfig') {
       steps {
-        sh 'aws eks update-kubeconfig --region us-east-1 --name test-cluster'
+        sh 'aws eks update-kubeconfig --region ap-south-1 --name test-cluster'
         sh 'kubectl get nodes'
       }
     }
