@@ -102,7 +102,7 @@ stage('AWS-Login') {
     }
     stage('get kubeconfig for production') {
       steps {
-        sh 'aws eks update-kubeconfig --region ap-south-1a --name prod-cluster'
+        sh 'aws eks update-kubeconfig --region ap-south-1 --name prod-cluster'
         sh 'kubectl get nodes'
       }
     }
