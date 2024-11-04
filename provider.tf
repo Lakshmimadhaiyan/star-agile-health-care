@@ -1,5 +1,5 @@
 locals {
-  region = "ap-south-1a"
+  region = "ap-south-1"
   name   = "${terraform.workspace}-cluster"
   vpc_cidr = "10.123.0.0/16"
   azs      = ["ap-south-1a", "ap-south-1b"]
@@ -12,5 +12,5 @@ locals {
 }
 
 provider "aws" {
-  region = "ap-south-1a"
+  region = "ap-south-1"
 }
